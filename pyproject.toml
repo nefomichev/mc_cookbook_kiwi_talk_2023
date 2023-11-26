@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mc-guide-kiwitalk-2023"
+version = "0.1.0"
+description = ""
+authors = ["Nikita Fomichev <nikita.f194@gmail.com>"]
+readme = "README.md"
+packages = [{include = "mc_guide_kiwitalk_2023"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+jupyter = "^1.0.0"
+scipy = "^1.11.4"
+numpy = "^1.26.2"
+seaborn = "^0.13.0"
+tqdm = "^4.66.1"
+statsmodels = "^0.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
