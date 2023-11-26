@@ -1,5 +1,6 @@
 import numpy as np
 from tools.config import CI_APPROXIMATION_DISTRIBUTION, CI
+from scipy.stats import norm
 
 
 class Statistics:
@@ -30,4 +31,26 @@ class Statistics:
         z = distribution.ppf(1 - alpha / 2)
         ci = z * std / np.sqrt(n)
         return CI(mean - ci, mean + ci)
+
+    @staticmethod
+    def mean_difference_ci(control, treatment, alpha=0.05):
+        """
+        Calculate the confidence interval for the difference in means between two samples.
+        """
+        control_mean = np.mean(control)
+        treatment_mean = np.mean(treatment)
+        control_variance = np.var(control)
+        treatment_variance = np.var(treatment)
+
+        n_control = len(control)
+        n_treatment = len(treatment)
+
+        diff = treatment_mean - control_mean
+        se = np.sqrt((control_variance / n_control) + (treatment_variance / n_treatment))
+        z = norm.ppf(1 - alpha / 2)
+        ci = z * se
+
+        return diff, CI(diff - ci, diff + ci)
+
+
 
